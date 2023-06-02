@@ -8,14 +8,15 @@ fn main() {
 
     let mut xk = na::Vector3::new(1.0, 2.0, 3.0);
 
-    let mut grad_xk = a * xk + b;
+    let mut grad_xk = a * xk - b;
     let gg:f64 = grad_xk.norm();
 
-    const EPS:f64 = 0.1;
+    const EPS:f64 = 0.001;
     //let dk:Vector3<f64> = - grad_xk.clone();
     println!("{:?}", grad_xk);
     println!("{}", gg);
     println!("{:?}", grad_xk);
+    println!("{}", grad_xk.norm());
 
     println!("start");
     println!("{:?}", xk);
@@ -27,9 +28,13 @@ fn main() {
         //let ak:f64 = 0.1;
         println!("ak");
         println!("{}", ak);
-
+        println!("{:?}", dk);
+        println!("{:?}", ak*dk);
+        println!("{:?}",xk);
+        println!("###################");
         xk = xk + ak * dk;
-        grad_xk = a * xk + b;
+        grad_xk = a * xk - b;
+        println!("{:?}", xk);
         println!("{}", (xk.transpose() * a * xk)[0]/2.0 - (b.transpose()*xk)[0] );
     }
 
