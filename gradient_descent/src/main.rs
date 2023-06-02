@@ -19,15 +19,21 @@ fn main() {
 
     println!("start");
     println!("{:?}", xk);
+    println!("{}", (xk.transpose() * a * xk)[0]/2.0 - (b.transpose()*xk)[0] );
     while grad_xk.norm() > EPS {
 
         let dk:Vector3<f64> = - grad_xk.clone();
-        let ak:f64 = 0.1;
+        let ak:f64 = - (grad_xk.transpose() * dk)[0] / (dk.transpose() * a * dk)[0];
+        //let ak:f64 = 0.1;
+        println!("ak");
+        println!("{}", ak);
 
         xk = xk + ak * dk;
         grad_xk = a * xk + b;
+        println!("{}", (xk.transpose() * a * xk)[0]/2.0 - (b.transpose()*xk)[0] );
     }
 
     println!("ans");
     println!("{:?}", xk);
+    println!("{}", (xk.transpose() * a * xk)[0]/2.0 - (b.transpose()*xk)[0] );
 }
