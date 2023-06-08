@@ -10,12 +10,9 @@ fn main() {
 
     let mut grad_xk = a * xk - b;
     let hess_xk = a.clone();
-    let gg:f64 = grad_xk.norm();
 
-    const EPS:f64 = 0.001;
-    //let dk:Vector3<f64> = - grad_xk.clone();
-    println!("{:?}", grad_xk);
-    println!("{}", gg);
+    const EPS:f64 = 0.01;
+
     println!("{:?}", grad_xk);
     println!("{}", grad_xk.norm());
 
