@@ -11,7 +11,7 @@ fn main() {
     let mut grad_xk = a * xk - b;
     let gg:f64 = grad_xk.norm();
 
-    const EPS:f64 = 0.001;
+    const EPS:f64 = 0.01;
     //let dk:Vector3<f64> = - grad_xk.clone();
     println!("{:?}", grad_xk);
     println!("{}", gg);
@@ -38,7 +38,7 @@ fn main() {
         println!("{}", (xk.transpose() * a * xk)[0]/2.0 - (b.transpose()*xk)[0] );
     }
 
-    println!("ans");
+    println!("gradient:ans");
     println!("{:?}", xk);
     println!("{}", (xk.transpose() * a * xk)[0]/2.0 - (b.transpose()*xk)[0] );
 }
